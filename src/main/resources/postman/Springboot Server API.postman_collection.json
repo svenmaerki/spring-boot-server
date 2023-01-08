@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "e0d854f1-ed5c-4f19-b243-79c360309799",
+		"name": "Springboot Server API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19265626"
+	},
+	"item": [
+		{
+			"name": "all servers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/server/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"server",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "server by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"ipAddress\": \"192.168.1.12\",\n            \"name\": \"Kali Linux\",\n            \"memory\": \"5 GB\",\n            \"type\": \"HP Thinkpad\",\n            \"status\": \"SERVER_UP\"\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/server/get/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"server",
+						"get",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new server",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ipAddress\": \"192.168.1.12\",\n    \"name\": \"Kali Linux\",\n    \"memory\": \"5 GB\",\n    \"type\": \"HP Thinkpad\",\n    \"status\": \"SERVER_UP\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/server/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"server",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "server image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/server/image/server1.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"server",
+						"image",
+						"server1.png"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ping of server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/server/ping/192.168.1.14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"server",
+						"ping",
+						"192.168.1.14"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
