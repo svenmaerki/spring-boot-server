@@ -1,0 +1,43 @@
+name: CI/CD pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  MAVEN_OPTS: "-Dmaven.repo.local=maven_repository"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: 14
+
+    - name: Build with Maven
+      uses: docker://maven:3.6.3-jdk-14
+      env:
+        MAVEN_OPTS: ${{ env.MAVEN_OPTS }}
+      working-directory: /app
+      run: mvn clean install
+
+    - name: Test with Maven
+      uses: docker://maven:3.6.3-jdk-14
+      env:
+        MAVEN_OPTS: ${{ env.MAVEN_OPTS }}
+      working-directory: /app
+      run: mvn test
+
+    - name: Publish JAR file
+      if: success()
+      uses: actions/upload-artifact@v2
+      with:
+        name: app.jar
+        path: target/app.jar
