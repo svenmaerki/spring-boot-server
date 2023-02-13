@@ -25,16 +25,16 @@ jobs:
       uses: docker://maven:3.6.3-jdk-14
       env:
         MAVEN_OPTS: ${{ env.MAVEN_OPTS }}
-      working-directory: /app
-      run: mvn clean install
-
+        working-directory: /app
+        args: mvn clean install
+        
     - name: Test with Maven
       uses: docker://maven:3.6.3-jdk-14
       env:
         MAVEN_OPTS: ${{ env.MAVEN_OPTS }}
-      working-directory: /app
-      run: mvn test
-
+        working-directory: /app
+        args: mvn test
+      
     - name: Publish JAR file
       if: success()
       uses: actions/upload-artifact@v2
